@@ -2,6 +2,10 @@ import { Component } from "react";
 import CostumerDetails from "./CostumerDetails";
 import OrderData1 from "./OrderData1";
 import OrderData2 from "./OrderData2";
+import OrderData3 from "./OrderData3";
+import OrderData4 from "./OrderData4";
+import OrderData5 from "./OrderData5";
+import OrderData6 from "./OrderData6";
 import Confirmation from "./Confirmation";
 import Success from "./Success";
 
@@ -17,6 +21,15 @@ export default class OrderForm extends Component {
     reference_point: "",
     cake_portions: "",
     what_celebration: "",
+    cake_flavor: "",
+    another_flavor: "",
+    do_have_fill: "",
+    filling: "",
+    another_filling: "",
+    cake_topping: "",
+    another_topping: "",
+    preview_sent: "",
+    detaills: "",
   };
   e;
   // go back to previous step
@@ -36,6 +49,12 @@ export default class OrderForm extends Component {
     this.setState({ [input]: e.target.value });
   };
 
+  // Handle field change type file
+
+  handleChangeFile = (input) => (e) => {
+    this.setState({ [input]: e.target.files[0] });
+  };
+
   render() {
     const { step } = this.state;
     const {
@@ -48,6 +67,15 @@ export default class OrderForm extends Component {
       reference_point,
       cake_portions,
       what_celebration,
+      cake_flavor,
+      another_flavor,
+      do_have_fill,
+      filling,
+      another_filling,
+      cake_topping,
+      another_topping,
+      preview_sent,
+      detaills,
     } = this.state;
 
     const values = {
@@ -60,6 +88,15 @@ export default class OrderForm extends Component {
       reference_point,
       cake_portions,
       what_celebration,
+      cake_flavor,
+      another_flavor,
+      do_have_fill,
+      filling,
+      another_filling,
+      cake_topping,
+      another_topping,
+      preview_sent,
+      detaills,
     };
 
     switch (step) {
@@ -91,13 +128,50 @@ export default class OrderForm extends Component {
         );
       case 4:
         return (
+          <OrderData3
+            prevStep={this.prevStep}
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 5:
+        return (
+          <OrderData4
+            prevStep={this.prevStep}
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 6:
+        return (
+          <OrderData5
+            prevStep={this.prevStep}
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 7:
+        return (
+          <OrderData6
+            prevStep={this.prevStep}
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            handleChangeFile={this.handleChangeFile}
+            values={values}
+          />
+        );
+      case 8:
+        return (
           <Confirmation
             prevStep={this.prevStep}
             nextStep={this.nextStep}
             values={values}
           />
         );
-      case 5:
+      case 9:
         return <Success />;
       default:
       // do nothing

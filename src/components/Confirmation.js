@@ -4,11 +4,14 @@ import {
   List,
   ListItem,
   ListItemText,
+  Typography,
   Button,
 } from "@material-ui/core";
 
 const Confirmation = ({ prevStep, nextStep, values }) => {
-  console.log(values);
+  // console.log(values.preview_sent);
+  if(values.another_topping!=="")
+    values.cake_topping = ""
   const {
     firstName,
     lastName,
@@ -19,6 +22,15 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
     reference_point,
     cake_portions,
     what_celebration,
+    cake_flavor,
+    another_flavor,
+    do_have_fill,
+    filling,
+    another_filling,
+    cake_topping,
+    another_topping,
+    preview_sent,
+    detaills,
   } = values;
   const Continue = (e) => {
     e.preventDefault();
@@ -33,36 +45,83 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
   return (
     <Container component="main" maxWidth="xs">
       <div>
+        <Typography component="h1" variant="h5">
+          ¿Cómo deseas tu torta?
+        </Typography>
+        <Typography component="h2" variant="h6">
+          Confirmación de Pedido
+        </Typography>
+      </div>
+      <div>
         <List>
           <ListItem>
-            <ListItemText primary="First Name" secondary={firstName} />
+            <ListItemText primary="Nombre" secondary={firstName} />
           </ListItem>
           <ListItem>
-            <ListItemText primary="Last Name" secondary={lastName} />
+            <ListItemText primary="Apellido" secondary={lastName} />
           </ListItem>
           <ListItem>
-            <ListItemText primary="Email" secondary={email} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="Phone Number" secondary={phone_number} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="Costumer Address" secondary={address} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="Order Date" secondary={order_date} />
+            <ListItemText primary="Correo" secondary={email} />
           </ListItem>
           <ListItem>
             <ListItemText
-              primary="Reference Point"
+              primary="Número de Teléfono"
+              secondary={phone_number}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Dirección" secondary={address} />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Fecha del pedido" secondary={order_date} />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Punto de referencia"
               secondary={reference_point}
             />
           </ListItem>
           <ListItem>
-            <ListItemText primary="Cake Portions" secondary={cake_portions} />
+            <ListItemText
+              primary="¿Cuántas porciones?"
+              secondary={cake_portions}
+            />
           </ListItem>
           <ListItem>
-            <ListItemText primary="What Celebration" secondary={what_celebration} />
+            <ListItemText primary="Celebración" secondary={what_celebration} />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Sabor de torta"
+              secondary={cake_flavor !== "" ? cake_flavor : another_flavor}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Con relleno" secondary={do_have_fill} />
+            {do_have_fill === "Yes" && (
+              <ListItemText
+                primary="Con relleno"
+                secondary={filling !== "" ? filling : another_filling}
+              />
+            )}
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Cubierta"
+              secondary={cake_topping !== "" ? cake_topping : another_topping}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Nombre de archivo de foto muestra"
+              secondary={preview_sent.name}
+            />
+            {preview_sent !== "" && (
+              <ListItemText
+                primary="Detalle de aspectos"
+                secondary={detaills}
+              />
+            )}
           </ListItem>
         </List>
 
@@ -76,7 +135,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
               variant="contained"
               color="primary"
             >
-              Previous
+              Anterior
             </Button>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -87,7 +146,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
               variant="contained"
               color="primary"
             >
-              Confirm & Continue
+              Confirmar
             </Button>
           </Grid>
         </Grid>

@@ -17,15 +17,19 @@ const CostumerDetails = ({ nextStep, handleChange, values }) => {
     <Container component="main" maxWidth="xs">
       <div>
         <Typography component="h1" variant="h5">
-          Formulario de Pedido
+          ¿Cómo deseas tu torta?
+        </Typography>
+        <Typography component="h2" variant="h6">
+          Detalle de Formulario de Pedido
         </Typography>
         <form>
           <Grid container spacing={2}>
             {/* firstName */}
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 placeholder="FirstName"
-                label="FirstName"
+                label="Nombre"
                 onChange={handleChange("firstName")}
                 defaultValue={values.firstName}
                 // variant="outlined"
@@ -37,7 +41,7 @@ const CostumerDetails = ({ nextStep, handleChange, values }) => {
             <Grid item xs={12} sm={6}>
               <TextField
                 placeholder="LastName"
-                label="LastName"
+                label="Apellido"
                 onChange={handleChange("lastName")}
                 defaultValue={values.lastName}
                 // variant="outlined"
@@ -49,7 +53,7 @@ const CostumerDetails = ({ nextStep, handleChange, values }) => {
             <Grid item xs={12}>
               <TextField
                 placeholder="Email Address"
-                label="Email Address"
+                label="Correo Electrónico"
                 onChange={handleChange("email")}
                 defaultValue={values.email}
                 // variant="outlined"
@@ -61,7 +65,7 @@ const CostumerDetails = ({ nextStep, handleChange, values }) => {
             <Grid item xs={12}>
               <TextField
                 placeholder="PhoneNumber"
-                label="PhoneNumber"
+                label="Número de teléfono"
                 onChange={handleChange("phone_number")}
                 defaultValue={values.phone_number}
                 // variant="outlined"
@@ -78,7 +82,7 @@ const CostumerDetails = ({ nextStep, handleChange, values }) => {
             variant="contained"
             color="primary"
           >
-            Next
+            Siguiente
           </Button>
         </form>
       </div>

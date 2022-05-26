@@ -5,17 +5,23 @@ import {
   makeStyles,
   TextField,
   Button,
+  Card,
+  CardContent,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 200,
+  },
+  textField2: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
   },
 }));
 
@@ -36,7 +42,10 @@ const OrderData = ({ prevStep, nextStep, handleChange, values }) => {
     <Container component="main" maxWidth="xs">
       <div>
         <Typography component="h1" variant="h5">
-          Formulario de Pedido
+          ¿Cómo deseas tu torta?
+        </Typography>
+        <Typography component="h2" variant="h6">
+          Detalle de Formulario de Pedido
         </Typography>
         <form>
           <Grid container spacing={2}>
@@ -44,7 +53,7 @@ const OrderData = ({ prevStep, nextStep, handleChange, values }) => {
             <Grid item xs={12}>
               <TextField
                 placeholder="Costumer Address"
-                label="Costumer Address"
+                label="Dirección"
                 onChange={handleChange("address")}
                 defaultValue={values.address}
                 autoComplete="address"
@@ -55,7 +64,7 @@ const OrderData = ({ prevStep, nextStep, handleChange, values }) => {
             <Grid item xs={12} className={classes.container} noValidate>
               <TextField
                 placeholder="Order Date"
-                label="Order Date"
+                label="Fecha de Entrega"
                 onChange={handleChange("order_date")}
                 defaultValue={values.order_date}
                 autoComplete="Order Date"
@@ -67,6 +76,20 @@ const OrderData = ({ prevStep, nextStep, handleChange, values }) => {
                 }}
               />
             </Grid>
+            <Grid item xs={12} className={classes.container} noValidate>
+              <Card>
+                <CardContent>
+                  <Typography
+                    className={classes.textField2}
+                    component="p"
+                    variant="body2"
+                  >
+                    *Esta pastelera solo acepta pedidos con mínimo 5 días de
+                    anticipación a la fecha de entrega
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
             <Grid item xs={12} sm={6}>
               <Button
                 onClick={Previous}
@@ -75,7 +98,7 @@ const OrderData = ({ prevStep, nextStep, handleChange, values }) => {
                 variant="contained"
                 color="primary"
               >
-                Previous
+                Anterior
               </Button>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -86,7 +109,7 @@ const OrderData = ({ prevStep, nextStep, handleChange, values }) => {
                 variant="contained"
                 color="primary"
               >
-                Next
+                Siguiente
               </Button>
             </Grid>
           </Grid>
